@@ -18,6 +18,7 @@
 		B8C0DE451F700441000F5DC9 /* sample iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = B8C0DE441F700441000F5DC9 /* sample iOS.json */; };
 		B8C0DE471F7014EE000F5DC9 /* test_sample iOS.json in Resources */ = {isa = PBXBuildFile; fileRef = B8C0DE461F7014EE000F5DC9 /* test_sample iOS.json */; };
 		B8C0DE491F701F5C000F5DC9 /* RestaurantTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0DE481F701F5C000F5DC9 /* RestaurantTest.swift */; };
+		B8C0DE501F702EF0000F5DC9 /* RestaurantInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0DE4F1F702EF0000F5DC9 /* RestaurantInfoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		B8C0DE441F700441000F5DC9 /* sample iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sample iOS.json"; sourceTree = "<group>"; };
 		B8C0DE461F7014EE000F5DC9 /* test_sample iOS.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test_sample iOS.json"; sourceTree = "<group>"; };
 		B8C0DE481F701F5C000F5DC9 /* RestaurantTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTest.swift; sourceTree = "<group>"; };
+		B8C0DE4F1F702EF0000F5DC9 /* RestaurantInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantInfoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		B8C0DE3A1F6FFBA6000F5DC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B8C0DE4F1F702EF0000F5DC9 /* RestaurantInfoTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			files = (
 				B8C0DE1B1F6FFB8E000F5DC9 /* RestaurantListViewController.swift in Sources */,
 				B8C0DE191F6FFB8E000F5DC9 /* AppDelegate.swift in Sources */,
+				B8C0DE501F702EF0000F5DC9 /* RestaurantInfoTableViewCell.swift in Sources */,
 				B8C0DE401F6FFCA2000F5DC9 /* Restaurant.swift in Sources */,
 				B8C0DE421F6FFCF1000F5DC9 /* Constants.swift in Sources */,
 			);

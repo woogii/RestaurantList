@@ -54,4 +54,12 @@ struct Constants {
     static let Extension = "json"
   }
 
+  // MARK : - Storyboard IDs
+  struct StoryboardIDs {
+    static let RestaurantListVC = "RestaurantListVC"
+  }
+  // MARK : - Cell IDs 
+  struct CellIDs {
+    static let RestaurantInfoTableViewCell = "restaurantInfoTableViewCell"
+  }
 }
