@@ -27,9 +27,7 @@ struct Constants {
     static let AverageProductPrice = "averageProductPrice"
     static let DeliveryCosts = "deliveryCosts"
     static let MinCost = "minCost"
-
   }
-
   // MARK : - JSON Serializaion Error Description 
   struct SerializaionErrorDesc {
     // MARK : - Error Messages
@@ -62,4 +60,7 @@ struct Constants {
   struct CellIDs {
     static let RestaurantInfoTableViewCell = "restaurantInfoTableViewCell"
   }
+  static let Open = "open"
+  static let OrderAhead = "orderAhead"
+  static let Closed = "closed"
 }

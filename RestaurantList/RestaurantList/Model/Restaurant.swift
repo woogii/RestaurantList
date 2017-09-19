@@ -17,7 +17,7 @@ struct Restaurant {
   var status: String
   var bestMatch: Float
   var newest: Float
-  var ratingAverage: Float
+  var ratingAverage: Double
   var distance: Int
   var popularity: Float
   var averageProductPrice: Float
@@ -52,7 +52,7 @@ struct Restaurant {
       throw SerializaionError.missing(Constants.SerializaionErrorDesc.NewestMissing)
     }
 
-    guard let ratingAverage = sortingValues[Constants.JSONParsingKeys.RatingAverage] as? Float else {
+    guard let ratingAverage = sortingValues[Constants.JSONParsingKeys.RatingAverage] as? Double else {
       throw SerializaionError.missing(Constants.SerializaionErrorDesc.RatingAverageMissing)
     }
 

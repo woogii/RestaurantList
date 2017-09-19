@@ -46,5 +46,7 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
     return cell
   }
   private func configureCell(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
+    let restaurant = restaurantList[indexPath.row]
+    cell.restaurantInfo = restaurant
   }
 }
