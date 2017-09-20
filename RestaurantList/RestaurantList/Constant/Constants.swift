@@ -86,4 +86,5 @@ struct Constants {
     static let RestaurantSix   = "img_restaurant_six"
   }
   static let GermanLocale = "de_DE"
+  static let TextFieldLeftPadding: CGFloat = 10
 }

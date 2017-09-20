@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B89D5CAD1F727BD9005320A4 /* UITextField+SetPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89D5CAC1F727BD9005320A4 /* UITextField+SetPadding.swift */; };
 		B8C0DE191F6FFB8E000F5DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0DE181F6FFB8E000F5DC9 /* AppDelegate.swift */; };
 		B8C0DE1B1F6FFB8E000F5DC9 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0DE1A1F6FFB8E000F5DC9 /* RestaurantListViewController.swift */; };
 		B8C0DE1E1F6FFB8E000F5DC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8C0DE1C1F6FFB8E000F5DC9 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		84186743D8C3907E187A8D18 /* Pods-RestaurantList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestaurantList/Pods-RestaurantList.debug.xcconfig"; sourceTree = "<group>"; };
 		A1ED4D1233197D6E831390CA /* Pods-RestaurantListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestaurantListTests/Pods-RestaurantListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3AC3E8C2FF2F03732C534CD /* Pods_RestaurantList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestaurantList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B89D5CAC1F727BD9005320A4 /* UITextField+SetPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+SetPadding.swift"; sourceTree = "<group>"; };
 		B8C0DE151F6FFB8E000F5DC9 /* RestaurantList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestaurantList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C0DE181F6FFB8E000F5DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8C0DE1A1F6FFB8E000F5DC9 /* RestaurantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B89D5CAB1F727BB4005320A4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B89D5CAC1F727BD9005320A4 /* UITextField+SetPadding.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		B8C0DE0C1F6FFB8E000F5DC9 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		B8C0DE171F6FFB8E000F5DC9 /* RestaurantList */ = {
 			isa = PBXGroup;
 			children = (
+				B89D5CAB1F727BB4005320A4 /* Extension */,
 				B8C0DE3B1F6FFBAC000F5DC9 /* Model */,
 				B8C0DE391F6FFB99000F5DC9 /* Controller */,
 				B8C0DE3A1F6FFBA6000F5DC9 /* View */,
@@ -449,6 +460,7 @@
 			files = (
 				B8C0DE1B1F6FFB8E000F5DC9 /* RestaurantListViewController.swift in Sources */,
 				B8C0DE191F6FFB8E000F5DC9 /* AppDelegate.swift in Sources */,
+				B89D5CAD1F727BD9005320A4 /* UITextField+SetPadding.swift in Sources */,
 				B8C0DE501F702EF0000F5DC9 /* RestaurantInfoTableViewCell.swift in Sources */,
 				B8C0DE401F6FFCA2000F5DC9 /* Restaurant.swift in Sources */,
 				B8C0DE421F6FFCF1000F5DC9 /* Constants.swift in Sources */,
