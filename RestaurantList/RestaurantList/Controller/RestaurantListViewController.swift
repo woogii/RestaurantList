@@ -47,19 +47,24 @@ class RestaurantListViewController: UIViewController {
   }
   @IBAction func tappedSortingButton(_ sender: Any) {
   }
+  // MARK : - Reconfigure SearchUI
   private func reconfigureSearchRelatedUI() {
     searchTextField.resignFirstResponder()
+    searchTextField.text = ""
     enteredSearchKeyword = ""
     tableView.reloadData()
   }
+  // MARK : - Configure SearchTextField
   private func configureSearchTextField() {
     searchTextField.becomeFirstResponder()
     searchTextField.setLeftPaddingPoints(Constants.TextFieldLeftPadding)
   }
+  // MARK : - Display SearchView and MenuView
   private func displaySearchViewsBasedOn(isHidden: Bool) {
     searchFieldContainerView.isHidden = isHidden
     menuContainerView.isHidden = !isHidden
   }
+  // MARK : - Check Filtering Operation
   fileprivate func isFiltering() -> Bool {
     return !searchFieldContainerView.isHidden && !searchKeywordIsEmpty()
   }
@@ -80,21 +85,45 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier:
-                                                   Constants.CellIDs.RestaurantInfoTableViewCell,
-                                                   for: indexPath) as? RestaurantInfoTableViewCell else {
-                                                    return RestaurantInfoTableViewCell()
+                                          Constants.CellIDs.RestaurantInfoTableViewCell,
+                                  for: indexPath) as? RestaurantInfoTableViewCell else {
+      return RestaurantInfoTableViewCell()
     }
     configureCell(cell, at:indexPath)
     return cell
   }
   private func configureCell(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
+    filterList(cell, at: indexPath)
+    setFavoriteSetAction(cell, at: indexPath)
+  }
+  private func filterList(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
     if !isFiltering() {
       let restaurant = restaurantList[indexPath.row]
       cell.restaurantInfo = restaurant
+      cell.favoriteButtonTapAction = { [weak self] in
+        if let isFavoriteValue = self?.restaurantList[indexPath.row].isFavorite {
+          self?.restaurantList[indexPath.row].isFavorite = !isFavoriteValue
+        }
+        cell.restaurantInfo = self?.restaurantList[indexPath.row]
+      }
     } else {
       let filteredRestaurant = filteredRestaurantList[indexPath.row]
       cell.restaurantInfo = filteredRestaurant
+      cell.favoriteButtonTapAction = { [weak self] in
+        if let isFavoriteValue = self?.filteredRestaurantList[indexPath.row].isFavorite {
+          // Find an index to update the isFavorite property in the initial list
+          if let index = self?.restaurantList.index(where: { (restaurant) -> Bool in
+            // Suppose that the name of the restaurant is unique  
+            return restaurant.name == filteredRestaurant.name }) {
+            self?.restaurantList[index].isFavorite = !isFavoriteValue
+          }
+          self?.filteredRestaurantList[indexPath.row].isFavorite = !isFavoriteValue
+        }
+        cell.restaurantInfo = self?.filteredRestaurantList[indexPath.row]
+      }
     }
+  }
+  private func setFavoriteSetAction(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
   }
 }
 
@@ -118,6 +147,7 @@ extension RestaurantListViewController : UITextFieldDelegate {
     }
     return true
   }
+  // MARK : - Filter List with Keyword
   func filterRestaurantListForSearchText(_ searchKeyword: String) {
     filteredRestaurantList = restaurantList.filter { restaurant -> Bool in
       return restaurant.name.lowercased().contains(searchKeyword.lowercased())

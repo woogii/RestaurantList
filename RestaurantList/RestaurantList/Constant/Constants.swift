@@ -28,21 +28,23 @@ struct Constants {
     static let AverageProductPrice = "averageProductPrice"
     static let DeliveryCosts = "deliveryCosts"
     static let MinCost = "minCost"
+    static let ImageName = "imageName"
   }
   // MARK : - JSON Serializaion Error Description 
   struct SerializaionErrorDesc {
     // MARK : - Error Messages
     static let NameMissing = "Name is missing"
-    static let StatusMissing = "status"
-    static let SortingValuesMissing = "sortingValues"
-    static let BestMatchMissing = "bestMatch"
-    static let NewestMissing = "newest"
-    static let RatingAverageMissing = "ratingAverage"
-    static let DistanceMissing = "distance"
-    static let PopularityMissing = "popularity"
-    static let AverageProductPriceMissing = "averageProductPrice"
-    static let DeliveryCostsMissing = "deliveryCosts"
-    static let MinCostMissing = "minCost"
+    static let StatusMissing = "Status is missing"
+    static let SortingValuesMissing = "SortingValues is missing"
+    static let BestMatchMissing = "BestMatch is missing"
+    static let NewestMissing = "Newest is missing"
+    static let RatingAverageMissing = "RatingAverage is missing"
+    static let DistanceMissing = "Distance is missing"
+    static let PopularityMissing = "Popularity is missing"
+    static let AverageProductPriceMissing = "AverageProductPrice is missing"
+    static let DeliveryCostsMissing = "DeliveryCosts is missing"
+    static let MinCostMissing = "MinCost is missing"
+    static let ImageNameMissing = "ImageName is missing"
     // MARK : - Invalid Messages 
     static let RatingAverageInvalid = "The value of rating average is not valid"
   }
@@ -67,7 +69,7 @@ struct Constants {
     static let KiloMeter = "Km"
     static let Min = "Min."
     static let Open = "open"
-    static let OrderAhead = "orderAhead"
+    static let OrderAhead = "order ahead"
     static let Closed = "closed"
     static let DistanceFormat = "%.1f"
   }
@@ -78,12 +80,8 @@ struct Constants {
   }
   // MARK : - Images {
   struct Images {
-    static let RestaurantOne   = "img_restaurant_one"
-    static let RestaurantTwo   = "img_restaurant_two"
-    static let RestaurantThree = "img_restaurant_three"
-    static let RestaurantFour  = "img_restaurant_four"
-    static let RestaurantFive  = "img_restaurant_five"
-    static let RestaurantSix   = "img_restaurant_six"
+    static let HeartOutline    = "ic_heart_outline"
+    static let HeartFilled     = "ic_heart_filled"
   }
   static let GermanLocale = "de_DE"
   static let TextFieldLeftPadding: CGFloat = 10

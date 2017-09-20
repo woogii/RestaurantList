@@ -23,7 +23,8 @@ struct Restaurant {
   var averageProductPrice: Float
   var deliveryCosts: Int
   var minCost: Int
-
+  var isFavorite: Bool = false
+  var imageName: String
   // MARK : - SerializationError
   enum SerializaionError: Error {
     case missing(String)
@@ -80,6 +81,10 @@ struct Restaurant {
       throw SerializaionError.missing(Constants.SerializaionErrorDesc.MinCostMissing)
     }
 
+    guard let imageName = sortingValues[Constants.JSONParsingKeys.ImageName] as? String else {
+      throw SerializaionError.missing(Constants.SerializaionErrorDesc.ImageNameMissing)
+    }
+
     self.name = name
     self.status = status
     self.bestMatch = bestMatch
@@ -90,7 +95,7 @@ struct Restaurant {
     self.averageProductPrice = averageProductPrice
     self.deliveryCosts = deliveryCosts
     self.minCost = minCost
-
+    self.imageName = imageName
   }
   // MARK : - Fetch Restaurant list from JSON file
   static func fetchRestaurantList(fileName: String, bundle: Bundle) -> [Restaurant]? {

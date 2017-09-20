@@ -12,7 +12,7 @@ import Cosmos
 // MARK : - RestaurantInfoTableViewCell: UITableViewCell
 class RestaurantInfoTableViewCell: UITableViewCell {
   // MARK : - Property
-  @IBOutlet weak var distanceSeparatorView: UIView!
+  @IBOutlet weak var favoriteButton: UIButton!
   @IBOutlet weak var deliveryCostSeparatorView: UIView!
   @IBOutlet weak var restaurantImageView: UIImageView!
   @IBOutlet weak var openStatusLabel: UILabel!
@@ -22,12 +22,6 @@ class RestaurantInfoTableViewCell: UITableViewCell {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var openStatusSeparatorView: UIView!
   @IBOutlet var ratingAverageView: CosmosView!
-  private let restaurantImageNames: [String] = [Constants.Images.RestaurantOne,
-                                                Constants.Images.RestaurantTwo,
-                                                Constants.Images.RestaurantThree,
-                                                Constants.Images.RestaurantFour,
-                                                Constants.Images.RestaurantFive,
-                                                Constants.Images.RestaurantSix]
   private let euroCurrencyFormatter: NumberFormatter = {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
@@ -39,6 +33,7 @@ class RestaurantInfoTableViewCell: UITableViewCell {
       updateUI()
     }
   }
+  var favoriteButtonTapAction: (() -> Void)?
   // MARK : - View Life Cycle
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -48,6 +43,12 @@ class RestaurantInfoTableViewCell: UITableViewCell {
     let selectionColorView = UIView()
     selectionColorView.backgroundColor = Constants.Colors.LightBlue
     selectedBackgroundView = selectionColorView
+  }
+  // MARK : - Action
+  @IBAction func tappedFavoriteButton(_ sender: Any) {
+    if favoriteButtonTapAction != nil {
+      favoriteButtonTapAction!()
+    }
   }
   // MARK : - Update Cell UI
   private func updateUI() {
@@ -59,6 +60,7 @@ class RestaurantInfoTableViewCell: UITableViewCell {
     setDistanceLabel()
     setMinimumCostLabel()
     setAverageRatingView()
+    setFavoriteButtonImage()
   }
   private func setRestaurantNameLabel() {
     nameLabel.text = restaurantInfo.name
@@ -73,8 +75,7 @@ class RestaurantInfoTableViewCell: UITableViewCell {
     ratingAverageView.rating = restaurantInfo.ratingAverage
   }
   private func setRestaurantImageView() {
-    let randomIndex = Int(arc4random_uniform(UInt32(restaurantImageNames.count)))
-    restaurantImageView.image = UIImage(named:restaurantImageNames[randomIndex])
+    restaurantImageView.image = UIImage(named:restaurantInfo.imageName)
   }
   private func setAverageRatingView() {
     ratingAverageView.rating = Double(restaurantInfo.ratingAverage)
@@ -97,12 +98,22 @@ class RestaurantInfoTableViewCell: UITableViewCell {
     openStatusLabel.text = restaurantInfo.status
     if restaurantInfo.status == Constants.RestaurantInfo.Closed {
       openStatusLabel.textColor = UIColor.red
-      displayOpenStatusViewsBasedOn(isHiddenValue: false)
+    } else if restaurantInfo.status == Constants.RestaurantInfo.OrderAhead {
+      openStatusLabel.textColor = UIColor.orange
     } else {
-      openStatusLabel.textColor = UIColor.lightGray
-      displayOpenStatusViewsBasedOn(isHiddenValue: true)
+      openStatusLabel.textColor = UIColor.green
     }
   }
+  private func setFavoriteButtonImage() {
+    if restaurantInfo.isFavorite == true {
+      let image = UIImage(named: Constants.Images.HeartFilled)
+      favoriteButton.setImage(image, for: UIControlState.normal)
+    } else {
+      let image = UIImage(named: Constants.Images.HeartOutline)
+      favoriteButton.setImage(image, for: UIControlState.normal)
+    }
+  }
+  // MARK : - Save and Restore colors of cell subviews
   override func setSelected(_ selected: Bool, animated: Bool) {
     let color = openStatusSeparatorView.backgroundColor
     super.setSelected(isHighlighted, animated: animated)
@@ -115,7 +126,6 @@ class RestaurantInfoTableViewCell: UITableViewCell {
   }
   private func setSeparatorViewsColors(_ color: UIColor?) {
     openStatusSeparatorView.backgroundColor = color
-    distanceSeparatorView.backgroundColor = color
     deliveryCostSeparatorView.backgroundColor = color
   }
 }

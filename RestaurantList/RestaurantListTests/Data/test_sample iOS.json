@@ -10,7 +10,8 @@
 			"popularity": 17.0,
 			"averageProductPrice": 1536,
 			"deliveryCosts": 200,
-			"minCost": 1000
+			"minCost": 1000,
+      "imageName": "img_restaurant1"
 		}
 	}, {
 		"name": "Tandoori Express",
@@ -23,7 +24,8 @@
 			"popularity": 123.0,
 			"averageProductPrice": 1146,
 			"deliveryCosts": 150,
-			"minCost": 1300
+			"minCost": 1300,
+      "imageName": "img_restaurant2"
 		}
 	}, {
 		"name": "Royal Thai",
@@ -36,7 +38,8 @@
 			"popularity": 44.0,
 			"averageProductPrice": 1492,
 			"deliveryCosts": 150,
-			"minCost": 2500
+			"minCost": 2500,
+      "imageName": "img_restaurant3"
 		}
 	}, {
 		"name": "Sushi One",
@@ -49,7 +52,8 @@
 			"popularity": 23.0,
 			"averageProductPrice": 1285,
 			"deliveryCosts": 0,
-			"minCost": 1200
+			"minCost": 1200,
+      "imageName": "img_restaurant4"
 		}
 	}, {
 		"name": "Roti Shop",
@@ -62,7 +66,8 @@
 			"popularity": 81.0,
 			"averageProductPrice": 915,
 			"deliveryCosts": 0,
-			"minCost": 2000
+			"minCost": 2000,
+      "imageName": "img_restaurant5"
 		}
 	}, {
 		"name": "Aarti 2",
@@ -75,7 +80,8 @@
 			"popularity": 44.0,
 			"averageProductPrice": 922,
 			"deliveryCosts": 250,
-			"minCost": 500
+			"minCost": 500,
+      "imageName": "img_restaurant6"
 		}
 	}, {
 		"name": "Pizza Heart",
@@ -88,7 +94,8 @@
 			"popularity": 9.0,
 			"averageProductPrice": 1103,
 			"deliveryCosts": 150,
-			"minCost": 1500
+			"minCost": 1500,
+      "imageName": "img_restaurant7"
 		}
 	}, {
 		"name": "Mama Mia",
@@ -101,7 +108,8 @@
 			"popularity": 6.0,
 			"averageProductPrice": 912,
 			"deliveryCosts": 0,
-			"minCost": 1000
+			"minCost": 1000,
+      "imageName": "img_restaurant8"
 		}
 	}, {
 		"name": "Feelfood",
@@ -114,7 +122,8 @@
 			"popularity": 31.0,
 			"averageProductPrice": 902,
 			"deliveryCosts": 150,
-			"minCost": 1500
+			"minCost": 1500,
+      "imageName": "img_restaurant9"
 		}
 	}, {
 		"name": "Daily Sushi",
@@ -127,7 +136,8 @@
 			"popularity": 6.0,
 			"averageProductPrice": 1327,
 			"deliveryCosts": 200,
-			"minCost": 1000
+			"minCost": 1000,
+      "imageName": "img_restaurant10"
 		}
 	}, {
 		"name": "Pamukkale",
@@ -140,7 +150,8 @@
 			"popularity": 25.0,
 			"averageProductPrice": 968,
 			"deliveryCosts": 0,
-			"minCost": 2000
+			"minCost": 2000,
+      "imageName": "img_restaurant11"
 		}
 	}, {
 		"name": "Indian Kitchen",
@@ -153,7 +164,8 @@
 			"popularity": 5.0,
 			"averageProductPrice": 1189,
 			"deliveryCosts": 150,
-			"minCost": 1300
+			"minCost": 1300,
+      "imageName": "img_restaurant12"
 		}
 	}, {
 		"name": "CIRO 1939",
@@ -166,7 +178,8 @@
 			"popularity": 79.0,
 			"averageProductPrice": 1762,
 			"deliveryCosts": 99,
-			"minCost": 1300
+			"minCost": 1300,
+      "imageName": "img_restaurant13"
 		}
 	}, {
 		"name": "Zenzai Sushi",
@@ -179,7 +192,8 @@
 			"popularity": 36.0,
 			"averageProductPrice": 1579,
 			"deliveryCosts": 0,
-			"minCost": 2000
+			"minCost": 2000,
+      "imageName": "img_restaurant14"
 		}
 	}, {
 		"name": "Fes Patisserie",
@@ -192,7 +206,8 @@
 			"popularity": 3.0,
 			"averageProductPrice": 1214,
 			"deliveryCosts": 150,
-			"minCost": 1250
+			"minCost": 1250,
+      "imageName": "img_restaurant15"
 		}
 	}, {
 		"name": "Yvonne's Vispaleis",
@@ -205,7 +220,8 @@
 			"popularity": 3.0,
 			"averageProductPrice": 2557,
 			"deliveryCosts": 150,
-			"minCost": 1750
+			"minCost": 1750,
+      "imageName": "img_restaurant16"
 		}
 	}, {
 		"name": "De Amsterdamsche Tram",
@@ -218,7 +234,8 @@
 			"popularity": 0.0,
 			"averageProductPrice": 892,
 			"deliveryCosts": 0,
-			"minCost": 0
+			"minCost": 0,
+      "imageName": "img_restaurant17"
 		}
 	}, {
 		"name": "Lale Restaurant & Snackbar",
@@ -231,7 +248,8 @@
 			"popularity": 0.0,
 			"averageProductPrice": 838,
 			"deliveryCosts": 0,
-			"minCost": 0
+			"minCost": 0,
+      "imageName": "img_restaurant18"
 		}
 	}, {
 		"name": "Lunchpakketdienst",
@@ -244,7 +262,8 @@
 			"popularity": 0.0,
 			"averageProductPrice": 4465,
 			"deliveryCosts": 500,
-			"minCost": 5000
+			"minCost": 5000,
+      "imageName": "img_restaurant19"
 		}
 	}]
 }
