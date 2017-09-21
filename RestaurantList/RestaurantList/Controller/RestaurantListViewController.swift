@@ -84,9 +84,8 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
     return restaurantList.count
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier:
-                                          Constants.CellIDs.RestaurantInfoTableViewCell,
-                                  for: indexPath) as? RestaurantInfoTableViewCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIDs.RestaurantInfoTableViewCell,
+                                                   for: indexPath) as? RestaurantInfoTableViewCell else {
       return RestaurantInfoTableViewCell()
     }
     configureCell(cell, at:indexPath)
@@ -100,26 +99,22 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
     if !isFiltering() {
       let restaurant = restaurantList[indexPath.row]
       cell.restaurantInfo = restaurant
-      cell.favoriteButtonTapAction = { [weak self] in
-        if let isFavoriteValue = self?.restaurantList[indexPath.row].isFavorite {
-          self?.restaurantList[indexPath.row].isFavorite = !isFavoriteValue
-        }
-        cell.restaurantInfo = self?.restaurantList[indexPath.row]
+      cell.favoriteButtonTapAction = { [unowned self] in
+        self.restaurantList[indexPath.row].isFavorite = !self.restaurantList[indexPath.row].isFavorite
+        cell.restaurantInfo = self.restaurantList[indexPath.row]
       }
     } else {
       let filteredRestaurant = filteredRestaurantList[indexPath.row]
       cell.restaurantInfo = filteredRestaurant
-      cell.favoriteButtonTapAction = { [weak self] in
-        if let isFavoriteValue = self?.filteredRestaurantList[indexPath.row].isFavorite {
-          // Find an index to update the isFavorite property in the initial list
-          if let index = self?.restaurantList.index(where: { (restaurant) -> Bool in
-            // Suppose that the name of the restaurant is unique  
-            return restaurant.name == filteredRestaurant.name }) {
-            self?.restaurantList[index].isFavorite = !isFavoriteValue
-          }
-          self?.filteredRestaurantList[indexPath.row].isFavorite = !isFavoriteValue
+      cell.favoriteButtonTapAction = { [unowned self] in
+        // Find an index to update the isFavorite property in the initial list
+        if let index = self.restaurantList.index(where: { (restaurant) -> Bool in
+          // Suppose that the name of the restaurant is unique
+          return restaurant.name == filteredRestaurant.name }) {
+          self.restaurantList[index].isFavorite = !self.filteredRestaurantList[indexPath.row].isFavorite
         }
-        cell.restaurantInfo = self?.filteredRestaurantList[indexPath.row]
+        self.filteredRestaurantList[indexPath.row].isFavorite = !self.filteredRestaurantList[indexPath.row].isFavorite
+        cell.restaurantInfo = self.filteredRestaurantList[indexPath.row]
       }
     }
   }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B876330A1F73FA2B00B774C2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87633091F73FA2B00B774C2 /* CoreDataStack.swift */; };
+		B87633101F7404B700B774C2 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B876330F1F7404B700B774C2 /* TestCoreDataStack.swift */; };
 		B89D5CAD1F727BD9005320A4 /* UITextField+SetPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89D5CAC1F727BD9005320A4 /* UITextField+SetPadding.swift */; };
 		B8C0DE191F6FFB8E000F5DC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0DE181F6FFB8E000F5DC9 /* AppDelegate.swift */; };
 		B8C0DE1B1F6FFB8E000F5DC9 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0DE1A1F6FFB8E000F5DC9 /* RestaurantListViewController.swift */; };
@@ -39,6 +41,8 @@
 		84186743D8C3907E187A8D18 /* Pods-RestaurantList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestaurantList/Pods-RestaurantList.debug.xcconfig"; sourceTree = "<group>"; };
 		A1ED4D1233197D6E831390CA /* Pods-RestaurantListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestaurantListTests/Pods-RestaurantListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3AC3E8C2FF2F03732C534CD /* Pods_RestaurantList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestaurantList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B87633091F73FA2B00B774C2 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		B876330F1F7404B700B774C2 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCoreDataStack.swift; path = ../TestCoreDataStack.swift; sourceTree = "<group>"; };
 		B89D5CAC1F727BD9005320A4 /* UITextField+SetPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+SetPadding.swift"; sourceTree = "<group>"; };
 		B8C0DE151F6FFB8E000F5DC9 /* RestaurantList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestaurantList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C0DE181F6FFB8E000F5DC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,14 @@
 				00F947D9D71ECA88315DFAC1 /* Pods_RestaurantListTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B87633071F73F9E500B774C2 /* CoreDataStack */ = {
+			isa = PBXGroup;
+			children = (
+				B87633091F73FA2B00B774C2 /* CoreDataStack.swift */,
+			);
+			name = CoreDataStack;
 			sourceTree = "<group>";
 		};
 		B89D5CAB1F727BB4005320A4 /* Extension */ = {
@@ -169,6 +181,7 @@
 		B8C0DE3B1F6FFBAC000F5DC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B87633071F73F9E500B774C2 /* CoreDataStack */,
 				B8C0DE3F1F6FFCA2000F5DC9 /* Restaurant.swift */,
 			);
 			path = Model;
@@ -204,6 +217,7 @@
 		B8C0DE4A1F7020AC000F5DC9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B876330F1F7404B700B774C2 /* TestCoreDataStack.swift */,
 				B8C0DE461F7014EE000F5DC9 /* test_sample iOS.json */,
 			);
 			path = Data;
@@ -458,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B876330A1F73FA2B00B774C2 /* CoreDataStack.swift in Sources */,
 				B8C0DE1B1F6FFB8E000F5DC9 /* RestaurantListViewController.swift in Sources */,
 				B8C0DE191F6FFB8E000F5DC9 /* AppDelegate.swift in Sources */,
 				B89D5CAD1F727BD9005320A4 /* UITextField+SetPadding.swift in Sources */,
@@ -473,6 +488,7 @@
 			files = (
 				B8C0DE491F701F5C000F5DC9 /* RestaurantTest.swift in Sources */,
 				B8C0DE2E1F6FFB8E000F5DC9 /* RestaurantListTests.swift in Sources */,
+				B87633101F7404B700B774C2 /* TestCoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
