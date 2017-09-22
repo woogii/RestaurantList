@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Toaster
 
 // MARK : - RestaurantListViewController: UIViewController
 class RestaurantListViewController: UIViewController {
@@ -109,6 +110,16 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
       setFilteredListFavoriteButtonAction(cell, at: indexPath, filteredRestaurant: filteredRestaurant)
     }
   }
+  private func displayToastMessageBasedOn(isFavorite: Bool) {
+    let message: String
+    if isFavorite {
+      message = Constants.ToastMsg.FavoriteMarked
+    } else {
+      message = Constants.ToastMsg.FavoriteUnMarked
+    }
+    let toast = Toast(text: message, delay: 0.0, duration: Constants.ToastMsg.Duration)
+    toast.show()
+  }
   // MARK : - Set Favorite Button Action in the List
   private func setFavoriteButtonAction(_ cell: RestaurantInfoTableViewCell,
                                        at indexPath: IndexPath) {
@@ -117,6 +128,8 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
       self.restaurantList[indexPath.row].isFavorite = !self.restaurantList[indexPath.row].isFavorite
       // Trigger Cell UI Update
       cell.restaurantInfo = self.restaurantList[indexPath.row]
+      // Display Toast Message 
+      self.displayToastMessageBasedOn(isFavorite: self.restaurantList[indexPath.row].isFavorite)
       // Update Database
       let updatedRestaurant = self.restaurantList[indexPath.row]
       self.updateFavoriteRestaurantDatabase(updatedRestaurant)
@@ -138,6 +151,8 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
         self.filteredRestaurantList[indexPath.row].isFavorite = !self.filteredRestaurantList[indexPath.row].isFavorite
         // Trigger Cell UI Update
         cell.restaurantInfo = self.filteredRestaurantList[indexPath.row]
+        // Display Toast Message
+        self.displayToastMessageBasedOn(isFavorite: self.restaurantList[indexPath.row].isFavorite)
         // Update Database
         let updatedRestaurant = self.restaurantList[indexPath.row]
         self.updateFavoriteRestaurantDatabase(updatedRestaurant)

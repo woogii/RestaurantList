@@ -88,4 +88,10 @@ struct Constants {
   static let CoreDataModelName = "FavoriteRestaurant"
   static let AssertDataInconsistency = "Favorite.findRestaurantAndUpdate -- database inconsistency"
   static let NameSearchPredicate = "name = %@"
+  // MARK : - Toast Message
+  struct ToastMsg {
+    static let Duration = 0.5
+    static let FavoriteMarked = "Restaurant favorited"
+    static let FavoriteUnMarked = "Restaurant removed from favorites"
+  }
 }

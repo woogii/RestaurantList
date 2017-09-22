@@ -5,6 +5,7 @@ target 'RestaurantList' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 	pod 'Cosmos'
+  pod 'Toaster'
   # Pods for RestaurantList
 
   target 'RestaurantListTests' do
