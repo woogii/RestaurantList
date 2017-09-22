@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let viewController = navController.topViewController as? RestaurantListViewController else {
         return
     }
-    viewController.managedContext = coreDataStack?.context
+    viewController.managedContext = coreDataStack!.context
     viewController.favoriteRestaurantList = favoriteRestaurantList
   }
   private func loadFavoriteRestaurantList() {

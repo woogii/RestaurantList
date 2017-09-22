@@ -51,15 +51,19 @@ public class FavoriteRestaurant: NSManagedObject {
     newFavoriteRestaurant.minCost             = Int32(restaurantInfo.minCost)
     newFavoriteRestaurant.imageName           = restaurantInfo.imageName
     newFavoriteRestaurant.isFavorite          = restaurantInfo.isFavorite
-    do {
-      try managedContext.save()
-    } catch let error as NSError {
-      print("Insert error : \(error.userInfo), \(error.localizedDescription)")
-    }
+    saveChanges(managedContext: managedContext)
   }
   // MARK : - Delete Favorite Restaurant
   class func deleteFavoriteRestaurant(matching restaurantInfo: FavoriteRestaurant,
                                       in managedContext: NSManagedObjectContext) {
     managedContext.delete(restaurantInfo)
+    saveChanges(managedContext: managedContext)
+  }
+  class func saveChanges(managedContext: NSManagedObjectContext) {
+    do {
+      try managedContext.save()
+    } catch let error as NSError {
+      print("Insert error : \(error.userInfo), \(error.localizedDescription)")
+    }
   }
 }

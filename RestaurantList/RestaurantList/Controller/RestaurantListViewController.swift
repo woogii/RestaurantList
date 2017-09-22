@@ -30,8 +30,9 @@ class RestaurantListViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     fetchRestaurantList()
+    updateFavoritePropertyInRestaurantList()
   }
-  // MARK : - Fetch the list of restaurant  
+  // MARK : - Fetch the list of restaurant
   private func fetchRestaurantList() {
     let bundle = Bundle(for: type(of: self))
     guard let fetchedList = Restaurant.fetchRestaurantList(fileName: Constants.SampleResource.FileName,
@@ -40,10 +41,20 @@ class RestaurantListViewController: UIViewController {
     }
     restaurantList = fetchedList
   }
+  // MARK : - Update Favorite Property
+  private func updateFavoritePropertyInRestaurantList() {
+    if favoriteRestaurantList.count > 0 {
+      _ = restaurantList.map { (restaurant) -> Bool in
+                                return favoriteRestaurantList.contains(where: { $0.name == restaurant.name })}
+                          .enumerated().filter({$1 == true})
+                            .map({ restaurantList[$0.0].isFavorite = true })
+    }
+  }
   // MARK : - Actions
   @IBAction func tappedSearchButton(_ sender: Any) {
     displaySearchViewsBasedOn(isHidden: false)
     configureSearchTextField()
+    tableView.setContentOffset(CGPoint.zero, animated: true)
   }
   @IBAction func tappedSearchCancelButton(_ sender: Any) {
     displaySearchViewsBasedOn(isHidden: true)
@@ -140,11 +151,9 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
   private func setFilteredListFavoriteButtonAction(_ cell: RestaurantInfoTableViewCell,
                                                    at indexPath: IndexPath, filteredRestaurant: Restaurant) {
     cell.favoriteButtonTapAction = { [unowned self] in
-      // Find an index to update the isFavorite property
-      if let index = self.restaurantList.index(where: { (restaurant) -> Bool in
-        // Suppose that the name of the restaurant is unique
-        return restaurant.name == filteredRestaurant.name }
-      ) {
+      // Find an index to update the isFavorite property.
+      // Suppose that the name of the restaurant is unique
+      if let index = self.restaurantList.index(where: { return $0.name == filteredRestaurant.name }) {
         // Toggle Non-Filtered Restaurant isFavorite Property
         self.restaurantList[index].isFavorite = !self.filteredRestaurantList[indexPath.row].isFavorite
         // Toggle Filtered Restaurant isFavorite Property
@@ -154,7 +163,7 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
         // Display Toast Message
         self.displayToastMessageBasedOn(isFavorite: self.restaurantList[indexPath.row].isFavorite)
         // Update Database
-        let updatedRestaurant = self.restaurantList[indexPath.row]
+        let updatedRestaurant = self.restaurantList[index]
         self.updateFavoriteRestaurantDatabase(updatedRestaurant)
         self.printDatabaseStatistics()
       }
