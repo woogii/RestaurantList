@@ -14,9 +14,9 @@ import CoreData
 struct CoreDataStack {
   // MARK: - Property
   private let model: NSManagedObjectModel
-  internal let coordinator: NSPersistentStoreCoordinator
   private let modelURL: URL
-  internal let dbURL: URL
+  let coordinator: NSPersistentStoreCoordinator
+  let dbURL: URL
   let context: NSManagedObjectContext
   // MARK: - Initialization
   init?(modelName: String) {

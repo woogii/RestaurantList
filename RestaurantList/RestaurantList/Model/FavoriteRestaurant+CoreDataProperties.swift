@@ -9,12 +9,13 @@
 import Foundation
 import CoreData
 
+// MARK : - FavoriteRestaurant (Extension)
 extension FavoriteRestaurant {
-
+    // MARK : - Fetch Request
     @nonobjc public class func fetchRequest() -> NSFetchRequest<FavoriteRestaurant> {
-        return NSFetchRequest<FavoriteRestaurant>(entityName: "FavoriteRestaurant")
+        return NSFetchRequest<FavoriteRestaurant>(entityName: Constants.CoreDataModelName)
     }
-
+    // MARK : - Property
     @NSManaged public var averageProductPrice: Float
     @NSManaged public var bestMatch: Float
     @NSManaged public var deliveryCosts: Int32

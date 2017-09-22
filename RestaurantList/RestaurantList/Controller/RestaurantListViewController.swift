@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 // MARK : - RestaurantListViewController: UIViewController
 class RestaurantListViewController: UIViewController {
 
   // MARK : - Property
-  var restaurantList = [Restaurant]()
-  var filteredRestaurantList = [Restaurant]()
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var sortingTypeImageView: UIImageView!
   @IBOutlet weak var sortingTypeLabel: UILabel!
@@ -21,7 +20,11 @@ class RestaurantListViewController: UIViewController {
   @IBOutlet weak var searchFieldContainerView: UIView!
   @IBOutlet weak var searchTextField: UITextField!
   @IBOutlet weak var sortingButton: UIButton!
-  var enteredSearchKeyword: String = ""
+  fileprivate var restaurantList = [Restaurant]()
+  fileprivate var filteredRestaurantList = [Restaurant]()
+  fileprivate var enteredSearchKeyword: String = ""
+  var managedContext: NSManagedObjectContext!
+  var favoriteRestaurantList = [FavoriteRestaurant]()
   // MARK : - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -93,32 +96,63 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
   }
   private func configureCell(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
     filterList(cell, at: indexPath)
-    setFavoriteSetAction(cell, at: indexPath)
   }
+  // MARK : - Configure Cell Based on Filtered Data Source
   private func filterList(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
     if !isFiltering() {
       let restaurant = restaurantList[indexPath.row]
       cell.restaurantInfo = restaurant
-      cell.favoriteButtonTapAction = { [unowned self] in
-        self.restaurantList[indexPath.row].isFavorite = !self.restaurantList[indexPath.row].isFavorite
-        cell.restaurantInfo = self.restaurantList[indexPath.row]
-      }
+      setFavoriteButtonAction(cell, at: indexPath)
     } else {
       let filteredRestaurant = filteredRestaurantList[indexPath.row]
       cell.restaurantInfo = filteredRestaurant
-      cell.favoriteButtonTapAction = { [unowned self] in
-        // Find an index to update the isFavorite property in the initial list
-        if let index = self.restaurantList.index(where: { (restaurant) -> Bool in
-          // Suppose that the name of the restaurant is unique
-          return restaurant.name == filteredRestaurant.name }) {
-          self.restaurantList[index].isFavorite = !self.filteredRestaurantList[indexPath.row].isFavorite
-        }
+      setFilteredListFavoriteButtonAction(cell, at: indexPath, filteredRestaurant: filteredRestaurant)
+    }
+  }
+  // MARK : - Set Favorite Button Action in the List
+  private func setFavoriteButtonAction(_ cell: RestaurantInfoTableViewCell,
+                                       at indexPath: IndexPath) {
+    cell.favoriteButtonTapAction = { [unowned self] in
+      // Toggle isFavorite Property
+      self.restaurantList[indexPath.row].isFavorite = !self.restaurantList[indexPath.row].isFavorite
+      // Trigger Cell UI Update
+      cell.restaurantInfo = self.restaurantList[indexPath.row]
+      // Update Database
+      let updatedRestaurant = self.restaurantList[indexPath.row]
+      self.updateFavoriteRestaurantDatabase(updatedRestaurant)
+      self.printDatabaseStatistics()
+    }
+  }
+  // MARK : - Set Favorite Button Action in the Filtered List
+  private func setFilteredListFavoriteButtonAction(_ cell: RestaurantInfoTableViewCell,
+                                                   at indexPath: IndexPath, filteredRestaurant: Restaurant) {
+    cell.favoriteButtonTapAction = { [unowned self] in
+      // Find an index to update the isFavorite property
+      if let index = self.restaurantList.index(where: { (restaurant) -> Bool in
+        // Suppose that the name of the restaurant is unique
+        return restaurant.name == filteredRestaurant.name }
+      ) {
+        // Toggle Non-Filtered Restaurant isFavorite Property
+        self.restaurantList[index].isFavorite = !self.filteredRestaurantList[indexPath.row].isFavorite
+        // Toggle Filtered Restaurant isFavorite Property
         self.filteredRestaurantList[indexPath.row].isFavorite = !self.filteredRestaurantList[indexPath.row].isFavorite
+        // Trigger Cell UI Update
         cell.restaurantInfo = self.filteredRestaurantList[indexPath.row]
+        // Update Database
+        let updatedRestaurant = self.restaurantList[indexPath.row]
+        self.updateFavoriteRestaurantDatabase(updatedRestaurant)
+        self.printDatabaseStatistics()
       }
     }
   }
-  private func setFavoriteSetAction(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
+  private func updateFavoriteRestaurantDatabase(_ restaurant: Restaurant) {
+    FavoriteRestaurant.findRestaurantAndUpdate(matching: restaurant, in: managedContext)
+  }
+  private func printDatabaseStatistics() {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: Constants.CoreDataModelName)
+    if let favorite = try? managedContext.fetch(fetchRequest) {
+      print("favorite count : \(favorite.count)")
+    }
   }
 }
 

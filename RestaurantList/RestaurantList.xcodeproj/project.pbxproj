@@ -107,6 +107,15 @@
 			path = CoreDataStack;
 			sourceTree = "<group>";
 		};
+		B87633261F75296D00B774C2 /* XCDataModeld */ = {
+			isa = PBXGroup;
+			children = (
+				B87633171F740DA900B774C2 /* FavoriteRestaurant.xcdatamodeld */,
+			);
+			name = XCDataModeld;
+			path = CoreDataStack;
+			sourceTree = "<group>";
+		};
 		B89D5CAB1F727BB4005320A4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,11 +127,11 @@
 		B8C0DE0C1F6FFB8E000F5DC9 = {
 			isa = PBXGroup;
 			children = (
+				B8C0DE171F6FFB8E000F5DC9 /* RestaurantList */,
+				B8C0DE2C1F6FFB8E000F5DC9 /* RestaurantListTests */,
 				8354CDC4682D4D3049BF874A /* Frameworks */,
 				C4779996F660393DDFB56A83 /* Pods */,
 				B8C0DE161F6FFB8E000F5DC9 /* Products */,
-				B8C0DE171F6FFB8E000F5DC9 /* RestaurantList */,
-				B8C0DE2C1F6FFB8E000F5DC9 /* RestaurantListTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,14 +147,14 @@
 		B8C0DE171F6FFB8E000F5DC9 /* RestaurantList */ = {
 			isa = PBXGroup;
 			children = (
+				B8C0DE3B1F6FFBAC000F5DC9 /* Model */,
+				B8C0DE3A1F6FFBA6000F5DC9 /* View */,
+				B8C0DE391F6FFB99000F5DC9 /* Controller */,
 				B8C0DE381F6FFB95000F5DC9 /* App */,
 				B8C0DE431F6FFD08000F5DC9 /* Constant */,
-				B8C0DE391F6FFB99000F5DC9 /* Controller */,
 				B89D5CAB1F727BB4005320A4 /* Extension */,
-				B8C0DE3B1F6FFBAC000F5DC9 /* Model */,
 				B8C0DE3D1F6FFC14000F5DC9 /* Storyboard */,
 				B8C0DE3E1F6FFC1E000F5DC9 /* Supporting Files */,
-				B8C0DE3A1F6FFBA6000F5DC9 /* View */,
 			);
 			path = RestaurantList;
 			sourceTree = "<group>";
@@ -187,10 +196,10 @@
 		B8C0DE3B1F6FFBAC000F5DC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B87633261F75296D00B774C2 /* XCDataModeld */,
 				B87633071F73F9E500B774C2 /* CoreDataStack */,
 				B87633221F74134000B774C2 /* FavoriteRestaurant+CoreDataClass.swift */,
 				B87633231F74134000B774C2 /* FavoriteRestaurant+CoreDataProperties.swift */,
-				B87633171F740DA900B774C2 /* FavoriteRestaurant.xcdatamodeld */,
 				B8C0DE3F1F6FFCA2000F5DC9 /* Restaurant.swift */,
 			);
 			path = Model;
@@ -732,7 +741,8 @@
 				B87633181F740DA900B774C2 /* FavoriteRestaurant.xcdatamodel */,
 			);
 			currentVersion = B87633181F740DA900B774C2 /* FavoriteRestaurant.xcdatamodel */;
-			path = FavoriteRestaurant.xcdatamodeld;
+			name = FavoriteRestaurant.xcdatamodeld;
+			path = ../FavoriteRestaurant.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

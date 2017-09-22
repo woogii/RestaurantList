@@ -85,4 +85,7 @@ struct Constants {
   }
   static let GermanLocale = "de_DE"
   static let TextFieldLeftPadding: CGFloat = 10
+  static let CoreDataModelName = "FavoriteRestaurant"
+  static let AssertDataInconsistency = "Favorite.findRestaurantAndUpdate -- database inconsistency"
+  static let NameSearchPredicate = "name = %@"
 }
