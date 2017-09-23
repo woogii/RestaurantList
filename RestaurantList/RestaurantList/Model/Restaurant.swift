@@ -123,7 +123,5 @@ struct Restaurant {
       print("\(error.userInfo), \(error.localizedDescription)")
       return nil
     }
-
   }
-
 }

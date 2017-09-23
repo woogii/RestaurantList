@@ -14,6 +14,8 @@ import Toaster
 class RestaurantListViewController: UIViewController {
 
   // MARK : - Property
+  @IBOutlet weak var pickerContainerView: UIView!
+  @IBOutlet weak var sortOptionsPickerView: UIPickerView!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var sortingTypeImageView: UIImageView!
   @IBOutlet weak var sortingTypeLabel: UILabel!
@@ -21,6 +23,11 @@ class RestaurantListViewController: UIViewController {
   @IBOutlet weak var searchFieldContainerView: UIView!
   @IBOutlet weak var searchTextField: UITextField!
   @IBOutlet weak var sortingButton: UIButton!
+  private let opaqueView: UIView = {
+    let opaqueView = UIView()
+    opaqueView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    return opaqueView
+  }()
   fileprivate var restaurantList = [Restaurant]()
   fileprivate var filteredRestaurantList = [Restaurant]()
   fileprivate var enteredSearchKeyword: String = ""
@@ -31,6 +38,8 @@ class RestaurantListViewController: UIViewController {
     super.viewDidLoad()
     fetchRestaurantList()
     updateFavoritePropertyInRestaurantList()
+    _ = restaurantList.sorted(by: { $0.isFavorite && !$1.isFavorite})
+    configureSortOptionsPickerView()
   }
   // MARK : - Fetch the list of restaurant
   private func fetchRestaurantList() {
@@ -50,6 +59,27 @@ class RestaurantListViewController: UIViewController {
                             .map({ restaurantList[$0.0].isFavorite = true })
     }
   }
+  private func configureSortOptionsPickerView() {
+    let toolBar = createToolbarInPickerView()
+    pickerContainerView.addSubview(toolBar)
+    displayPickerContainerBasedOn(isHidden: true)
+  }
+  private func createToolbarInPickerView() -> UIToolbar {
+    let toolBar = UIToolbar()
+    toolBar.barStyle = UIBarStyle.default
+    toolBar.isTranslucent = true
+    toolBar.tintColor = UIColor.black
+    toolBar.sizeToFit()
+    let cancelButton = UIBarButtonItem(title: Constants.Title.Cancel, style: UIBarButtonItemStyle.plain,
+                                       target: self, action: #selector(cancelSortOption(_:)))
+    let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace,
+                                      target: nil, action: nil)
+    let selectButton = UIBarButtonItem(title: Constants.Title.Select, style: UIBarButtonItemStyle.plain,
+                                       target: self, action: #selector(selectSortOption(_:)))
+    toolBar.setItems([cancelButton, spaceButton, selectButton], animated: false)
+    toolBar.isUserInteractionEnabled = true
+    return toolBar
+  }
   // MARK : - Actions
   @IBAction func tappedSearchButton(_ sender: Any) {
     displaySearchViewsBasedOn(isHidden: false)
@@ -61,6 +91,34 @@ class RestaurantListViewController: UIViewController {
     reconfigureSearchRelatedUI()
   }
   @IBAction func tappedSortingButton(_ sender: Any) {
+    displayPickerContainerBasedOn(isHidden: false)
+    displayOpaqueviewBasedOn(isHidden: false)
+  }
+  func cancelSortOption(_ sender:Any) {
+    displayPickerContainerBasedOn(isHidden: true)
+    displayOpaqueviewBasedOn(isHidden: true)
+  }
+  func selectSortOption(_ sender:Any) {
+    print(Constants.SortOptions[sortOptionsPickerView.selectedRow(inComponent: 0)])
+    displayPickerContainerBasedOn(isHidden: true)
+    displayOpaqueviewBasedOn(isHidden: true)
+  }
+  private func displayPickerContainerBasedOn(isHidden: Bool) {
+    pickerContainerView.isHidden = isHidden
+  }
+  private func displayOpaqueviewBasedOn(isHidden: Bool) {
+    if isHidden == false {
+      if let window = UIApplication.shared.keyWindow {
+        window.addSubview(opaqueView)
+        let opaqueViewFrame = CGRect(x: 0, y: 0, width: window.frame.size.width,
+                                   height: window.frame.size.height - 200)
+        self.opaqueView.frame = opaqueViewFrame
+        self.opaqueView.alpha = 1.0
+      }
+    } else {
+      self.opaqueView.alpha = 0.0
+      opaqueView.removeFromSuperview()
+    }
   }
   // MARK : - Reconfigure SearchUI
   private func reconfigureSearchRelatedUI() {
@@ -206,5 +264,19 @@ extension RestaurantListViewController : UITextFieldDelegate {
       return restaurant.name.lowercased().contains(searchKeyword.lowercased())
     }
     tableView.reloadData()
+  }
+}
+// MARK : - RestaurantListViewController : UIPickerViewDataSource
+extension RestaurantListViewController : UIPickerViewDataSource, UIPickerViewDelegate {
+  // MARK : - UIPickerView DataSource Method
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return Constants.SortOptions.count
+  }
+  // MARK : - UIPickerView Delegate Method
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return Constants.SortOptions[row]
   }
 }

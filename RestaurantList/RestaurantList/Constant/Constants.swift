@@ -83,15 +83,21 @@ struct Constants {
     static let HeartOutline    = "ic_heart_outline"
     static let HeartFilled     = "ic_heart_filled"
   }
-  static let GermanLocale = "de_DE"
-  static let TextFieldLeftPadding: CGFloat = 10
-  static let CoreDataModelName = "FavoriteRestaurant"
-  static let AssertDataInconsistency = "Favorite.findRestaurantAndUpdate -- database inconsistency"
-  static let NameSearchPredicate = "name = %@"
   // MARK : - Toast Message
   struct ToastMsg {
     static let Duration = 0.5
     static let FavoriteMarked = "Restaurant favorited"
     static let FavoriteUnMarked = "Restaurant removed from favorites"
   }
+  struct Title {
+    static let Cancel = "Cancel"
+    static let Select = "Select"
+  }
+  static let GermanLocale = "de_DE"
+  static let TextFieldLeftPadding: CGFloat = 10
+  static let CoreDataModelName = "FavoriteRestaurant"
+  static let AssertDataInconsistency = "Favorite.findRestaurantAndUpdate -- database inconsistency"
+  static let NameSearchPredicate = "name = %@"
+  static let SortOptions = ["best match", "newest", "rating average", "distance", "popularity",
+                            "average product price", "delivery costs", "minimum cost"]
 }
