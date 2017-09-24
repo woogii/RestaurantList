@@ -237,7 +237,6 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
       // Update Database
       let updatedRestaurant = self.restaurantList[indexPath.row]
       self.updateFavoriteRestaurantDatabase(updatedRestaurant)
-      self.printDatabaseStatistics()
     }
   }
   // MARK : - Set Favorite Button Action in the Filtered List
@@ -258,18 +257,11 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
         // Update Database
         let updatedRestaurant = self.restaurantList[index]
         self.updateFavoriteRestaurantDatabase(updatedRestaurant)
-        self.printDatabaseStatistics()
       }
     }
   }
   private func updateFavoriteRestaurantDatabase(_ restaurant: Restaurant) {
     FavoriteRestaurant.findRestaurantAndUpdate(matching: restaurant, in: managedContext)
-  }
-  private func printDatabaseStatistics() {
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: Constants.CoreDataModelName)
-    if let favorite = try? managedContext.fetch(fetchRequest) {
-      print("favorite count : \(favorite.count)")
-    }
   }
 }
 
