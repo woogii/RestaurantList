@@ -162,7 +162,7 @@ extension Restaurant {
       return restaurantList.sorted(by: {
                                     $0.isFavorite == $1.isFavorite ?
                                       ($0.orderStatus.sortIndex == $1.orderStatus.sortIndex ?
-                                        $0.distance > $1.distance : $0.orderStatus.sortIndex > $1.orderStatus.sortIndex)
+                                        $0.distance < $1.distance : $0.orderStatus.sortIndex > $1.orderStatus.sortIndex)
                                         : $0.isFavorite && !$1.isFavorite })
     case Constants.SortOption.Popularity:
         return restaurantList.sorted(by: {
@@ -176,21 +176,21 @@ extension Restaurant {
       return restaurantList.sorted(by: {
                                     $0.isFavorite == $1.isFavorite ?
                                       ($0.orderStatus.sortIndex == $1.orderStatus.sortIndex ?
-                                        $0.averageProductPrice > $1.averageProductPrice :
+                                        $0.averageProductPrice < $1.averageProductPrice :
                                           $0.orderStatus.sortIndex > $1.orderStatus.sortIndex)
                                             : $0.isFavorite && !$1.isFavorite })
     case Constants.SortOption.DeliveryCosts:
       return restaurantList.sorted(by: {
                                     $0.isFavorite == $1.isFavorite ?
                                       ($0.orderStatus.sortIndex == $1.orderStatus.sortIndex ?
-                                        $0.deliveryCosts > $1.deliveryCosts :
+                                        $0.deliveryCosts < $1.deliveryCosts :
                                           $0.orderStatus.sortIndex > $1.orderStatus.sortIndex)
                                             : $0.isFavorite && !$1.isFavorite })
     case Constants.SortOption.MinimumCost:
       return restaurantList.sorted(by: {
                                     $0.isFavorite == $1.isFavorite ?
                                       ($0.orderStatus.sortIndex == $1.orderStatus.sortIndex ?
-                                        $0.minCost > $1.minCost : $0.orderStatus.sortIndex > $1.orderStatus.sortIndex)
+                                        $0.minCost < $1.minCost : $0.orderStatus.sortIndex > $1.orderStatus.sortIndex)
                                             : $0.isFavorite && !$1.isFavorite })
     default:
       return restaurantList
