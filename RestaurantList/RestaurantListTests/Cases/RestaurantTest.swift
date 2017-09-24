@@ -20,12 +20,12 @@ class RestaurantTest: XCTestCase {
   }
   // MARK : - Tear Down
   override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     super.tearDown()
+    restaurantList = []
   }
   // MARK : - Test Restaurant Information Fetching 
   func testFetchRestaurantInfo() {
-    restaurantList = Restaurant.fetchRestaurantList(fileName: "test_sample iOS",
+    restaurantList = Restaurant.fetchRestaurantList(fileName: Constants.SampleResource.TestFileName,
                                      bundle: Bundle(for:RestaurantListTests.self))
     XCTAssertEqual(restaurantList.count, 19, "couldn't fetch 19 items from bundle")
   }
@@ -37,5 +37,18 @@ class RestaurantTest: XCTestCase {
     XCTAssertEqual(restaurant.name, "Tanoshii Sushi")
     XCTAssertEqual(restaurant.status, "open")
     XCTAssertEqual(restaurant.bestMatch, 0.0)
+  }
+  func testSortListByOptions() {
+    let option = Constants.SortOption.Popularity
+    verifySotedRestaurantListHasExpectedValues(sortOptions:option)
+  }
+  func verifySotedRestaurantListHasExpectedValues(sortOptions: String) {
+    restaurantList = Restaurant.sortListByOptions(restaurantList: restaurantList, selectedSortOption: sortOptions)
+    for res in restaurantList {
+      print("name : \(res.name)    popularity : \(res.popularity)")
+    }
+    XCTAssertEqual(restaurantList[0].name, "Roti Shop")
+    XCTAssertEqual(restaurantList[0].status, "open")
+    XCTAssertEqual(restaurantList[0].popularity, 81.0)
   }
 }

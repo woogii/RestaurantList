@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B838D7F61F782E6900CA0920 /* FavoriteRestaurantTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B838D7F51F782E6900CA0920 /* FavoriteRestaurantTest.swift */; };
 		B876330A1F73FA2B00B774C2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87633091F73FA2B00B774C2 /* CoreDataStack.swift */; };
 		B87633101F7404B700B774C2 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B876330F1F7404B700B774C2 /* TestCoreDataStack.swift */; };
 		B87633191F740DA900B774C2 /* FavoriteRestaurant.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B87633171F740DA900B774C2 /* FavoriteRestaurant.xcdatamodeld */; };
@@ -44,6 +45,7 @@
 		84186743D8C3907E187A8D18 /* Pods-RestaurantList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestaurantList/Pods-RestaurantList.debug.xcconfig"; sourceTree = "<group>"; };
 		A1ED4D1233197D6E831390CA /* Pods-RestaurantListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantListTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestaurantListTests/Pods-RestaurantListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3AC3E8C2FF2F03732C534CD /* Pods_RestaurantList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestaurantList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B838D7F51F782E6900CA0920 /* FavoriteRestaurantTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRestaurantTest.swift; sourceTree = "<group>"; };
 		B87633091F73FA2B00B774C2 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B876330F1F7404B700B774C2 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		B87633181F740DA900B774C2 /* FavoriteRestaurant.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteRestaurant.xcdatamodel; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 			children = (
 				B8C0DE2D1F6FFB8E000F5DC9 /* RestaurantListTests.swift */,
 				B8C0DE481F701F5C000F5DC9 /* RestaurantTest.swift */,
+				B838D7F51F782E6900CA0920 /* FavoriteRestaurantTest.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B838D7F61F782E6900CA0920 /* FavoriteRestaurantTest.swift in Sources */,
 				B8C0DE491F701F5C000F5DC9 /* RestaurantTest.swift in Sources */,
 				B8C0DE2E1F6FFB8E000F5DC9 /* RestaurantListTests.swift in Sources */,
 				B87633101F7404B700B774C2 /* TestCoreDataStack.swift in Sources */,

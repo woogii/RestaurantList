@@ -7,19 +7,42 @@
 //
 
 import XCTest
+import CoreData
 @testable import RestaurantList
 
 // MARK : - RestaurantListTests: XCTestCase
 class RestaurantListTests: XCTestCase {
+  var coreDataStack: TestCoreDataStack!
+  var controllerUnderTest: RestaurantListViewController!
+  var restaurantList: [Restaurant]!
   // MARK : - Set Up
   override func setUp() {
     super.setUp()
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    setCoreDataStackForTest()
+    setViewControllerForTest()
+    setRestaurantList()
+  }
+  func setCoreDataStackForTest() {
+    coreDataStack = TestCoreDataStack(modelName: Constants.CoreDataModelName)!
+  }
+  func setViewControllerForTest() {
+    guard let viewController = UIStoryboard(name: Constants.MainStoryBoard,
+                 bundle: nil).instantiateViewController(
+                  withIdentifier: Constants.RestaurantVCStoryboardID)
+      as? RestaurantListViewController else {
+      return
+    }
+    controllerUnderTest = viewController
+    controllerUnderTest.managedContext = coreDataStack.context
+  }
+  func setRestaurantList() {
+    restaurantList = Restaurant.fetchRestaurantList(fileName: Constants.SampleResource.TestFileName,
+                                                    bundle: Bundle(for:RestaurantListTests.self))
   }
   // MARK : - Tear Down
   override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of 
-    // each test method in the class.
     super.tearDown()
+    coreDataStack = nil
+    controllerUnderTest = nil
   }
 }

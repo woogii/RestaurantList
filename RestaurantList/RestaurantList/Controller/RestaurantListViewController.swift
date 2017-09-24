@@ -23,23 +23,53 @@ class RestaurantListViewController: UIViewController {
   @IBOutlet weak var searchFieldContainerView: UIView!
   @IBOutlet weak var searchTextField: UITextField!
   @IBOutlet weak var sortingButton: UIButton!
-  private let opaqueView: UIView = {
+  private lazy var opaqueView: UIView = {
     let opaqueView = UIView()
     opaqueView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     return opaqueView
+  }()
+  private lazy var refreshControl: UIRefreshControl = {
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(RestaurantListViewController.handleRefresh(_:)),
+                                              for: UIControlEvents.valueChanged)
+    return refreshControl
   }()
   fileprivate var restaurantList = [Restaurant]()
   fileprivate var filteredRestaurantList = [Restaurant]()
   fileprivate var enteredSearchKeyword: String = ""
   var managedContext: NSManagedObjectContext!
   var favoriteRestaurantList = [FavoriteRestaurant]()
+  // 'best match' is default sorting option
+  var selectedSortOption = Constants.SortOption.BestMatch
   // MARK : - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     fetchRestaurantList()
     updateFavoritePropertyInRestaurantList()
-    _ = restaurantList.sorted(by: { $0.isFavorite && !$1.isFavorite})
+    sortRestaurantList(sortOption: selectedSortOption)
+    displaySortOption(Constants.PickerViewRowText[Constants.DefaultSortIndex])
     configureSortOptionsPickerView()
+    addRefreshControl()
+  }
+  private func addRefreshControl() {
+    if #available(iOS 10.0, *) {
+      tableView.refreshControl = refreshControl
+    } else {
+      tableView.addSubview(refreshControl)
+    }
+  }
+  func handleRefresh(_ refreshControl: UIRefreshControl) {
+    sortRestaurantList(sortOption: selectedSortOption)
+    self.tableView.reloadData()
+    refreshControl.endRefreshing()
+  }
+  private func sortRestaurantList(sortOption: String) {
+    restaurantList = Restaurant.sortListByOptions(restaurantList: restaurantList,
+                                                  selectedSortOption: sortOption)
+    self.tableView.reloadData()
+  }
+  private func displaySortOption(_ option: String) {
+    sortingTypeLabel.text = option
   }
   // MARK : - Fetch the list of restaurant
   private func fetchRestaurantList() {
@@ -99,9 +129,13 @@ class RestaurantListViewController: UIViewController {
     displayOpaqueviewBasedOn(isHidden: true)
   }
   func selectSortOption(_ sender:Any) {
-    print(Constants.SortOptions[sortOptionsPickerView.selectedRow(inComponent: 0)])
     displayPickerContainerBasedOn(isHidden: true)
     displayOpaqueviewBasedOn(isHidden: true)
+    // Get A Selected Index From UIPickerView
+    let selectedIndex = sortOptionsPickerView.selectedRow(inComponent: 0)
+    selectedSortOption = Constants.SortOptionsArray[selectedIndex]
+    sortRestaurantList(sortOption: selectedSortOption)
+    displaySortOption(Constants.PickerViewRowText[selectedIndex])
   }
   private func displayPickerContainerBasedOn(isHidden: Bool) {
     pickerContainerView.isHidden = isHidden
@@ -109,9 +143,10 @@ class RestaurantListViewController: UIViewController {
   private func displayOpaqueviewBasedOn(isHidden: Bool) {
     if isHidden == false {
       if let window = UIApplication.shared.keyWindow {
+        // Place an opaqueView right above the UIPickerView
         window.addSubview(opaqueView)
         let opaqueViewFrame = CGRect(x: 0, y: 0, width: window.frame.size.width,
-                                   height: window.frame.size.height - 200)
+                                   height: window.frame.size.height - Constants.PickerContainerHeight)
         self.opaqueView.frame = opaqueViewFrame
         self.opaqueView.alpha = 1.0
       }
@@ -273,10 +308,10 @@ extension RestaurantListViewController : UIPickerViewDataSource, UIPickerViewDel
     return 1
   }
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return Constants.SortOptions.count
+    return Constants.PickerViewRowText.count
   }
   // MARK : - UIPickerView Delegate Method
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return Constants.SortOptions[row]
+    return Constants.PickerViewRowText[row]
   }
 }
