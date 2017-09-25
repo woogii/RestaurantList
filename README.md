@@ -31,6 +31,7 @@ FavoriteRestaurant is `NSManagedObject` subclass which is used to save the favor
 
 * It is highly likely that the amount of code in Controller layer in the project will rapidly grow as more features are added. This is a phenomenon so called 'fat viewcontroller', which is the reason why developers start adopting alternative patterns such as MVVM, MVP, Viper. One of those patterns can be used on the project to reduce the Controller layer's tasks. 
 * The code of the sort function in Model layer is verbose and contains duplicate code. This can be fixed by extending `Sequence` protocol and I get some hints after reading this [blog](http://master-method.com/index.php/2016/11/23/sort-a-sequence-i-e-arrays-of-objects-by-multiple-properties-in-swift-3/). I will dig deep into this topic to resolve the issue.
+* Data fetching and sorting operations should be performed in the background if processing large amount of data.
 * Unit, UI Tests
 # Open Source Licence
 
