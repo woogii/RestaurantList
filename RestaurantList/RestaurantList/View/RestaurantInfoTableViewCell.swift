@@ -34,6 +34,7 @@ class RestaurantInfoTableViewCell: UITableViewCell {
     }
   }
   var favoriteButtonTapAction: (() -> Void)?
+
   // MARK : - View Life Cycle
   override func awakeFromNib() {
     super.awakeFromNib()

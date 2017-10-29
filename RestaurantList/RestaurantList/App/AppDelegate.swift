@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var coreDataStack = CoreDataStack(modelName: Constants.CoreDataModelName)
   var favoriteRestaurantList = [FavoriteRestaurant]()
+
   // MARK : - Delegate Methods
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     passContextAndFetchResultToViewController()
     return true
   }
+
   private func passContextAndFetchResultToViewController() {
     guard coreDataStack != nil else {
       return
@@ -35,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     viewController.managedContext = coreDataStack!.context
     viewController.favoriteRestaurantList = favoriteRestaurantList
   }
+
   private func loadFavoriteRestaurantList() {
     let favoriteRestaurantFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.CoreDataModelName)
     do {
@@ -47,9 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       print("Could not fetch \(error.userInfo),\(error.localizedDescription)")
     }
   }
+
   func applicationWillTerminate(_ application: UIApplication) {
     coreDataStack?.saveContext()
   }
+
   func applicationDidEnterBackground(_ application: UIApplication) {
     coreDataStack?.saveContext()
   }

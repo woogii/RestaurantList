@@ -41,6 +41,7 @@ class RestaurantListViewController: UIViewController {
   var favoriteRestaurantList = [FavoriteRestaurant]()
   // 'best match' is default sorting option
   var selectedSortOption = Constants.SortOption.BestMatch
+
   // MARK : - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -51,6 +52,7 @@ class RestaurantListViewController: UIViewController {
     configureSortOptionsPickerView()
     addRefreshControl()
   }
+
   private func addRefreshControl() {
     if #available(iOS 10.0, *) {
       tableView.refreshControl = refreshControl
@@ -58,6 +60,7 @@ class RestaurantListViewController: UIViewController {
       tableView.addSubview(refreshControl)
     }
   }
+
   func handleRefresh(_ refreshControl: UIRefreshControl) {
     sortRestaurantList(sortOption: selectedSortOption)
     self.tableView.reloadData()
@@ -71,6 +74,7 @@ class RestaurantListViewController: UIViewController {
   private func displaySortOption(_ option: String) {
     sortingTypeLabel.text = option
   }
+
   // MARK : - Fetch the list of restaurant
   private func fetchRestaurantList() {
     let bundle = Bundle(for: type(of: self))
@@ -80,6 +84,7 @@ class RestaurantListViewController: UIViewController {
     }
     restaurantList = fetchedList
   }
+
   // MARK : - Update Favorite Property
   private func updateFavoritePropertyInRestaurantList() {
     if favoriteRestaurantList.count > 0 {
@@ -110,6 +115,7 @@ class RestaurantListViewController: UIViewController {
     toolBar.isUserInteractionEnabled = true
     return toolBar
   }
+
   // MARK : - Actions
   @IBAction func tappedSearchButton(_ sender: Any) {
     displaySearchViewsBasedOn(isHidden: false)
@@ -124,10 +130,12 @@ class RestaurantListViewController: UIViewController {
     displayPickerContainerBasedOn(isHidden: false)
     displayOpaqueviewBasedOn(isHidden: false)
   }
+
   func cancelSortOption(_ sender:Any) {
     displayPickerContainerBasedOn(isHidden: true)
     displayOpaqueviewBasedOn(isHidden: true)
   }
+
   func selectSortOption(_ sender:Any) {
     displayPickerContainerBasedOn(isHidden: true)
     displayOpaqueviewBasedOn(isHidden: true)
@@ -137,9 +145,11 @@ class RestaurantListViewController: UIViewController {
     sortRestaurantList(sortOption: selectedSortOption)
     displaySortOption(Constants.PickerViewRowText[selectedIndex])
   }
+
   private func displayPickerContainerBasedOn(isHidden: Bool) {
     pickerContainerView.isHidden = isHidden
   }
+
   private func displayOpaqueviewBasedOn(isHidden: Bool) {
     if isHidden == false {
       if let window = UIApplication.shared.keyWindow {
@@ -155,6 +165,7 @@ class RestaurantListViewController: UIViewController {
       opaqueView.removeFromSuperview()
     }
   }
+
   // MARK : - Reconfigure SearchUI
   private func reconfigureSearchRelatedUI() {
     searchTextField.resignFirstResponder()
@@ -162,20 +173,24 @@ class RestaurantListViewController: UIViewController {
     enteredSearchKeyword = ""
     tableView.reloadData()
   }
+
   // MARK : - Configure SearchTextField
   private func configureSearchTextField() {
     searchTextField.becomeFirstResponder()
     searchTextField.setLeftPaddingPoints(Constants.TextFieldLeftPadding)
   }
+
   // MARK : - Display SearchView and MenuView
   private func displaySearchViewsBasedOn(isHidden: Bool) {
     searchFieldContainerView.isHidden = isHidden
     menuContainerView.isHidden = !isHidden
   }
+
   // MARK : - Check Filtering Operation
   fileprivate func isFiltering() -> Bool {
     return !searchFieldContainerView.isHidden && !searchKeywordIsEmpty()
   }
+
   fileprivate func searchKeywordIsEmpty() -> Bool {
     // Returns true if the text is empty
     return enteredSearchKeyword.isEmpty
@@ -184,6 +199,7 @@ class RestaurantListViewController: UIViewController {
 
 // MARK : - RestaurantListViewController: UITableViewDelegate, UITableViewDataSource
 extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSource {
+
   // MARK : - UITableViewDataSource Methods
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if isFiltering() {
@@ -202,6 +218,7 @@ extension RestaurantListViewController: UITableViewDelegate, UITableViewDataSour
   private func configureCell(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
     filterList(cell, at: indexPath)
   }
+
   // MARK : - Configure Cell Based on Filtered Data Source
   private func filterList(_ cell: RestaurantInfoTableViewCell, at indexPath: IndexPath) {
     if !isFiltering() {
@@ -293,8 +310,10 @@ extension RestaurantListViewController : UITextFieldDelegate {
     tableView.reloadData()
   }
 }
+
 // MARK : - RestaurantListViewController : UIPickerViewDataSource
 extension RestaurantListViewController : UIPickerViewDataSource, UIPickerViewDelegate {
+
   // MARK : - UIPickerView DataSource Method
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
